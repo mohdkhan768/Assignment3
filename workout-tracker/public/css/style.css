@@ -4,23 +4,33 @@ body {
     background-color: #f8f8f8;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
     color: #333;
   }
   
-  h1, h2 {
-    color: #2c3e50;
+  h1 {
+    color: #ffffff;
     font-weight: bold;
     margin-bottom: 20px;
+    
   }
   
+  h2 {
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-decoration: underline;
+    margin-top:0 20px;
+    margin: 0 10px;
+  }
+
   a {
     color: #3498db;
     text-decoration: none;
+    text-align: left;
+  }
+
+  p1 {
+    font-weight: bold;
   }
   
   a:hover {
@@ -40,7 +50,7 @@ body {
     background-color: #2c3e50;
     color: #fff;
     text-align: center;
-    padding: 15px 0;
+    padding: 20px 0; /* Increased padding for header */
     width: 100%;
   }
   
@@ -48,12 +58,56 @@ body {
     color: #ecf0f1;
     font-size: 18px;
     margin: 0 10px;
+    text-align: center;
   }
   
   header a:hover, footer a:hover {
     color: #3498db;
   }
   
+/* Label styling */
+label {
+    display: block; 
+    margin-bottom: 8px; 
+    font-weight: bold; 
+    color: #333; 
+  }
+  
+  /* Input field styling */
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  textarea {
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    font-size: 16px; 
+  }
+  
+  /* Textarea styling */
+  textarea {
+    height: 120px; 
+    resize: vertical; 
+  }
+  
+  /* Button styling */
+  button[type="submit"] {
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 12px 20px; 
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
   /* Form Styles */
   form {
     background-color: #ffffff;
@@ -153,6 +207,7 @@ body {
     margin-bottom: 40px;
   }
   
+  /* Splash Page Styles */
   .splash-content {
     text-align: center;
     background-color: #fff;

@@ -1,26 +1,17 @@
-// routes/workoutRoutes.js
 const express = require('express');
 const router = express.Router();
 const Workout = require('../models/workout');
 
 // Route to get all workouts
-router.get('/', (req, res) => {
-  Workout.find()
+router.get('/workouts', (req, res) => {
+  Workout.find() // Get all workouts from the database
     .then(workouts => {
-      res.render('workouts', { workouts });  // Pass all workouts to the 'workouts.ejs' view
+      res.render('workouts', { workouts });  // Render the workouts.ejs page with the data
     })
     .catch(err => {
       console.log(err);
       res.status(500).send('Error retrieving workouts');
     });
-});
-
-// Route to show all workouts
-router.get('/workouts', (req, res) => {
-  Workout.find() // Get all workouts from the database
-    .then(workouts => {
-      res.render('workouts', { workouts }); // Render the workouts.ejs page with the data
-    })
 });
 
 // Route to create a new workout
@@ -35,12 +26,66 @@ router.post('/workouts', (req, res) => {
   });
 
   newWorkout.save()
-    .then(workout => {
+    .then(() => {
       res.redirect('/workouts'); // Redirect back to the list of workouts after saving
     })
     .catch(err => {
       console.log(err);
       res.status(500).send('Error creating workout');
+    });
+});
+
+// Route to show edit form for a workout
+router.get('/workouts/edit/:id', (req, res) => {
+  Workout.findById(req.params.id)
+    .then(workout => {
+      res.render('edit', { workout }); // Pass the workout to the edit page
+    })
+    .catch(err => {
+      console.log(err);
+      res.redirect('/workouts');
+    });
+});
+
+// Route to update a workout
+router.post('/workouts/edit/:id', (req, res) => {
+  // Log the request body to check if 'method' is correctly included
+  console.log('Request Body:', req.body);
+
+  if (req.body.method === 'PUT') {
+    const { name, description, duration, date } = req.body;
+
+    // Log to check what data is being sent
+    console.log("POST request received for workout ID:", req.params.id);
+    console.log("Updated data:", { name, description, duration, date });
+
+    // Update the workout in the database
+    Workout.findByIdAndUpdate(req.params.id, {
+      name,
+      description,
+      duration,
+      date: new Date(date),
+    })
+      .then(() => res.redirect('/workouts')) // Redirect after successful update
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send('Error updating workout');
+      });
+  } else {
+    // If method is not 'PUT', return 400 error
+    console.log('Invalid method:', req.body.method);
+    res.status(400).send('Invalid method');
+  }
+});
+
+
+// Route to delete a workout
+router.delete('/workouts/:id', (req, res) => {
+  Workout.findByIdAndDelete(req.params.id)
+    .then(() => res.redirect('/workouts')) // Redirect to workouts list after deletion
+    .catch(err => {
+      console.log(err);
+      res.redirect('/workouts');
     });
 });
 
