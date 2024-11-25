@@ -19,6 +19,14 @@ router.post('/', async (req, res) => {
   res.redirect('/');
 });
 
+router.post('/', async (req, res) => {
+  const { date, type, duration, calories } = req.body;
+  const workout = new Workout({ date, type, duration, calories });
+  await workout.save();
+  res.redirect('/');
+});
+
+
 // GET: Form to edit workout
 router.get('/:id/edit', async (req, res) => {
   const workout = await Workout.findById(req.params.id);
