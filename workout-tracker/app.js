@@ -27,6 +27,11 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
+// Home page route ("/")
+app.get('/', (req, res) => {
+  res.render('index'); // Ensure 'index.ejs' exists
+});
+
 // Routes
 app.use('/', workoutRoutes);
 
