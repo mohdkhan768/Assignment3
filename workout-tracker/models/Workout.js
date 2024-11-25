@@ -1,4 +1,4 @@
-// models/Workout.js
+// models/workout.js
 const mongoose = require('mongoose');
 
 const workoutSchema = new mongoose.Schema({

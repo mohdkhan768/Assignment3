@@ -83,4 +83,11 @@ router.delete('/workouts/:id', (req, res) => {
     });
 });
 
+try {
+  const Workout = require('../models/workout'); // or '../models/Workout', depending on the filename
+  console.log('Workout model loaded successfully');
+} catch (err) {
+  console.error('Error loading Workout model:', err.message);
+}
+
 module.exports = router;
