@@ -1,9 +1,14 @@
 /* Global Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
   }
   
   h1, h2 {
@@ -128,5 +133,21 @@ body {
   
   .mb-4 {
     margin-bottom: 40px;
+  }
+  .splash-content {
+    text-align: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .splash-image {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    margin: 20px 0;
   }
   
