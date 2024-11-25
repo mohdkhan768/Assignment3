@@ -49,9 +49,6 @@ router.get('/workouts/edit/:id', (req, res) => {
 
 // Route to update a workout
 router.post('/workouts/edit/:id', (req, res) => {
-  // Log the request body to check if 'method' is correctly included
-  console.log('Request Body:', req.body);
-
   if (req.body.method === 'PUT') {
     const { name, description, duration, date } = req.body;
 
@@ -59,21 +56,18 @@ router.post('/workouts/edit/:id', (req, res) => {
     console.log("POST request received for workout ID:", req.params.id);
     console.log("Updated data:", { name, description, duration, date });
 
-    // Update the workout in the database
     Workout.findByIdAndUpdate(req.params.id, {
       name,
       description,
       duration,
-      date: new Date(date),
+      date: new Date(date), // Ensure the date is correctly formatted
     })
-      .then(() => res.redirect('/workouts')) // Redirect after successful update
+      .then(() => res.redirect('/workouts')) // Redirect back to the workouts list after successful update
       .catch((err) => {
         console.log(err);
         res.status(500).send('Error updating workout');
       });
   } else {
-    // If method is not 'PUT', return 400 error
-    console.log('Invalid method:', req.body.method);
     res.status(400).send('Invalid method');
   }
 });
